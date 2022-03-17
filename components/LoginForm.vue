@@ -51,7 +51,7 @@ export default {
               uid: user.uid,
               displayName: user.displayName
             })
-            this.$router.push('/stress-check-intro')
+            this.$router.push('/')
           })
           .catch(() => {
             this.message = 'ログインできません'
