@@ -1,11 +1,15 @@
 export const state = () => ({
   user: null,
+  selectedValue: {}
 })
 
 // getter
 export const getters = {
   isLoggedIn (state) {
     return !!state.user
+  },
+  getSelectedValue () {
+    return state.selectedValue
   }
 }
 
@@ -13,6 +17,9 @@ export const getters = {
 export const mutations = {
   setUser (state, user) {
     state.user = user
+  },
+  setSelectedValue (state, data) {
+    state.selectedValue[data.id] = data.value
   }
 }
 
@@ -27,6 +34,14 @@ export const actions = {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         commit('setUser', user)
+        resolve()
+      }, 1000)
+    })
+  },
+  setSelectedValue ({ commit }, data) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        commit('setSelectedValue', data)
         resolve()
       }, 1000)
     })
