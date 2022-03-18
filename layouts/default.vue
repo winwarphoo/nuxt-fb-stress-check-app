@@ -5,22 +5,27 @@
         ストレスチェック
       </v-toolbar-title>
       <v-spacer />
-      <v-btn
-        class="white--text"
-        icon
-        text
-        to="/"
-      >
-        <v-icon>mdi-home-variant-outline</v-icon>
-      </v-btn>
-      <v-btn
-        class="white--text"
-        icon
-        text
-        to="/signup"
-      >
-        <v-icon>mdi-account-multiple-plus</v-icon>
-      </v-btn>
+      <div v-if="!$store.state.user">
+        <v-btn
+          class="white--text"
+          icon
+          text
+          to="/signup"
+        >
+          <v-icon>mdi-account-multiple-plus</v-icon>
+        </v-btn>
+      </div>
+      <div v-if="$store.state.user">
+        {{ $store.state.user.displayName }}
+        <v-btn
+          icon
+          text
+          class="white--text"
+          @click="$store.dispatch('logout')"
+        >
+          <v-icon>mdi-logout-variant</v-icon>
+        </v-btn>
+      </div>
     </v-app-bar>
     <v-main>
       <v-container>
