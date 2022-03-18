@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <v-app-bar color="#F5B7B1 " class="white--text" app>
+    <v-app-bar color="#F5B7B1" class="white--text" app>
       <v-toolbar-title to="/">
         ストレスチェック
       </v-toolbar-title>
@@ -34,6 +34,8 @@
     </v-main>
     <v-footer
       app
+      color="#F5B7B1"
+      class="white--text"
     >
       <span>&copy; {{ new Date().getFullYear() }} — ストレスチェック</span>
     </v-footer>
