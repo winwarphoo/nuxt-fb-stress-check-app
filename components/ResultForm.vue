@@ -1,8 +1,8 @@
 <template>
   <v-card color="transparent" height="500">
-    <v-row class="fill-height" align="center" justify="center">
+    <v-row class="mt-1" align="center" justify="center">
       <v-col cols="12" sm="12" md="12">
-        <v-card-text class="text-h5">ストレスチェックの結果</v-card-text>
+        <v-card-text class="font-weight-bold text-h5" align="center" justify="center">ストレスチェックの結果</v-card-text>
         <v-card-text class="text-h6">受けた日付：{{date}}</v-card-text>
         <v-card-text class="text-h6">ストレス：&nbsp;{{stressStatus}}</v-card-text>
         <v-card-text class="text">A：&nbsp;{{totalA}}点</v-card-text>
@@ -46,11 +46,11 @@ export default {
     keys = Object.keys(this.total)
     values = Object.values(this.total)
     keys.forEach((key,index) => {
-      if(key <= 'A17') {
+      if(key.startsWith('A')){
         this.totalA += values[index]
-      } else if(key > 'A17' && key <= 'B29') {
+      } else if (key.startsWith('B')){
         this.totalB += values[index]
-      } else if(key > 'B29' && key <= 'C09') {
+      } else if (key.startsWith('C')){
         this.totalC += values[index]
       } else {
         this.totalD += values[index]
@@ -63,13 +63,13 @@ export default {
     this.totalResult.C = this.totalC
     this.totalResult.D = this.totalD
 
+    const totalResultAC = this.totalResult.A + this.totalResult.C
+
     // calculate stress status depends on total points
-    if ( (this.totalA + this.totalB + this.totalC + this.totalD) > 70 ){
+    if ( (this.totalResult.B >= 77 || (totalResultAC >= 76 && this.totalResult.B >= 63))){
         this.stressStatus = '高ストレス'
-      }else if((this.totalA + this.totalB + this.totalC + this.totalD) > 28){
-        this.stressStatus = '普通ストレス'
-      }else{
-        this.stressStatus = 'ストレスなし'
+      } else {
+        this.stressStatus = '異常なし'
       }
 
       // save total points and stress to database
