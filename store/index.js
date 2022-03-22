@@ -8,7 +8,7 @@ export const getters = {
   isLoggedIn (state) {
     return !!state.user
   },
-  getSelectedValue () {
+  getSelectedValue (state) {
     return state.selectedValue
   }
 }
