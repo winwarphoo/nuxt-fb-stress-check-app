@@ -27,7 +27,7 @@
           </thead>
           <tbody>
             <tr v-for="result in results" :key="result.id" >
-              <td>{{ $dateFns.format(result.checked_at.toDate(), 'yyyy/MM/dd') }}</td>
+              <td>{{ $dateFns.format(result.checked_at.toDate(), 'yyyy/MM/dd HH:mm:ss') }}</td>
               <td>{{ result.stress_status }}</td>
             </tr>
           </tbody>
