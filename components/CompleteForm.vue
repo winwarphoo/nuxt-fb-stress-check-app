@@ -3,8 +3,9 @@
       <v-col cols="12" sm="12" md="12">
         <v-card-text class="text-h6" align="center" justify="center">ストレスチェックは以上です。</v-card-text>
         <v-card-text class="text-h6" align="center" justify="center">ありがとうございました。</v-card-text>
+        <v-card-text v-if="totalLength != 57" class="text-h6" align="center" justify="center">未回答の問題があります！</v-card-text>
         <v-card-text align="center" justify="center">
-          <v-btn color="primary" @click="showResult">
+          <v-btn color="primary" :disabled="totalLength != 57" @click="showResult">
           結果表示
         </v-btn>
         </v-card-text>
@@ -14,18 +15,24 @@
 </template>
 
 <script>
-import ResultForm from './ResultForm.vue'
+// import ResultForm from './ResultForm.vue'
 export default {
   name: 'CompleteForm',
-  components: { ResultForm },
+  // components: { ResultForm },
   data () {
    return {
-      isShow: false
+      isShow: false,
+      totalLength: 0
     }
+  },
+  mounted () {
+    // get total result size from store
+    this.totalLength = Object.keys(this.$store.state.selectedValue).length
   },
   methods: {
     showResult(){
-      this.isShow = true;
+      this.isShow = true
+      this.$emit('add', this.isShow)
     }
   }
 }
