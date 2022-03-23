@@ -63,7 +63,7 @@ export default {
                     uid: user.uid,
                     displayName: user.displayName
                   })
-                  this.$router.push('/login')
+                  this.$router.push('/')
                 })
             })
             .catch((err) => {
