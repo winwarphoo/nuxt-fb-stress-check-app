@@ -23,7 +23,7 @@
             <div align="right" class="pr-5 font-weight-medium">{{ onboarding + 1 }} / {{ lists.length }}</div>
             <CheckListForm  :list="list" />
           </template>
-          <complete-form v-if="isComplete || isShow" @add="showResult" />
+          <complete-form v-if="isComplete || isShow" @showResult="showResult" />
         </v-window-item>
       </v-window>
       <v-card-actions class="justify-space-between">

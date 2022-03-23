@@ -32,7 +32,7 @@ export default {
   methods: {
     showResult(){
       this.isShow = true
-      this.$emit('add', this.isShow)
+      this.$emit('showResult', this.isShow)
     }
   }
 }
